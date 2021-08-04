@@ -1,4 +1,4 @@
-// Package Hamming calculate the Hamming Distance between two DNA strands.
+// Package hamming calculate the Hamming Distance between two DNA strands.
 package hamming
 
 import (
@@ -7,15 +7,16 @@ import (
 
 // Distance accepts two input string and return hamming distance
 func Distance(a, b string) (int, error) {
-	if len(a) != len(b) {
+	ra := []rune(a)
+	rb := []rune(b)
+	if len(ra) != len(rb) {
 		return 0, errors.New("Not Equal")
-	} else {
-		count := 0
-		for i := range a {
-			if a[i] != b[i] {
-				count += 1
-			}
-		}
-		return count, nil
 	}
+	count := 0
+	for i := range ra {
+		if ra[i] != rb[i] {
+			count++
+		}
+	}
+	return count, nil
 }
